@@ -5,18 +5,36 @@ export const EventContext = createContext();
 const EventProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/categories')
-      .then(res => res.json())
-      .then(data => setCategories(data));
-    fetch('/users')
-      .then(res => res.json())
-      .then(data => setUsers(data));
+    const fetchData = async () => {
+      try {
+        const categoriesRes = await fetch('/categories');
+        const usersRes = await fetch('/users');
+        
+        if (!categoriesRes.ok || !usersRes.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const categoriesData = await categoriesRes.json();
+        const usersData = await usersRes.json();
+        
+        setCategories(categoriesData);
+        setUsers(usersData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
-    <EventContext.Provider value={{ categories, users }}>
+    <EventContext.Provider value={{ categories, users, loading, error }}>
       {children}
     </EventContext.Provider>
   );
