@@ -8,9 +8,12 @@ import './styles/App.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <ChakraProvider>
-    <Router>
-      <App />
-    </Router>
-  </ChakraProvider>
+  <React.StrictMode>
+    <ChakraProvider>
+      <Router>
+        <App />
+      </Router>
+    </ChakraProvider>
+  </React.StrictMode>
 );
+
