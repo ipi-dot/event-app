@@ -2,8 +2,45 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f9f9f9; /* Leicht grauer Hintergrund für besseren Kontrast */
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #3182ce; /* ChakraUI Primärfarbe für Links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  background-color: #3182ce; /* ChakraUI Primärfarbe für Buttons */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2b6cb0; /* Dunklerer Farbton für Hover-Effekte */
+}
+
+input, textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #3182ce; /* ChakraUI Primärfarbe für Focus-Effekte */
 }
